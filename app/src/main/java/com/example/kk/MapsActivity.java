@@ -1,7 +1,6 @@
 package com.example.kk;
 
 import android.Manifest;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -9,30 +8,24 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.location.Address;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.telephony.CarrierConfigManager;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.Toast;
-
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
-
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
@@ -49,10 +42,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,LocationListener {
     private static final int TAG_CODE_PERMISSION_LOCATION = 12;
     private FirebaseAuth mAuth;
     Button btnLogOut;
@@ -87,7 +79,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     generateRandomMarkers();
 
                 }
-            }, 5000);
+            }, 30000*99);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -233,12 +225,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot s : dataSnapshot.getChildren()) {
-                    double lat = s.child("latitude").getValue(Double.class);
-                    double lag = s.child("longitude").getValue(Double.class);
-                    marker = mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lag)).title("mid point").snippet("Snippet").icon(bitmapDescriptorFromVector(MapsActivity.this, R.drawable.ic_starbucks__1_)));
-                    mMarker.add(marker);
+                    Double collect = s.child("collect").getValue(Double.class);
+                    if(collect.equals(0.0)) {
+                        double lat = s.child("latitude").getValue(Double.class);
+                        double lag = s.child("longitude").getValue(Double.class);
+                        marker = mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lag)).title("mid point").snippet("Snippet").icon(bitmapDescriptorFromVector(MapsActivity.this, R.drawable.ic_starbucks__1_)));
+                        mMarker.add(marker);
 
-
+                    }
                 }
             }
 
@@ -257,38 +251,43 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 PackageManager.PERMISSION_GRANTED &&
                 ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) ==
                         PackageManager.PERMISSION_GRANTED) {
-            LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+
+            Location location = new Location("");
+            location.setLatitude(39.7792496);
+            location.setLongitude(32.8130252);
             double currentLong = location.getLongitude();
-            double currentLat = location.getLatitude();
+                double currentLat = location.getLatitude();
 
-            // 1 KiloMeter = 0.00900900900901° So, 1 Meter = 0.00900900900901 / 1000
-            double meterCord = 0.00900900900901 / 1000;
+                // 1 KiloMeter = 0.00900900900901° So, 1 Meter = 0.00900900900901 / 1000
+                double meterCord = 0.00900900900901 / 1000;
 
-            //Generate random Meters between the maximum and minimum Meters
-            Random r = new Random();
-            int randomMeters = r.nextInt(max + min);
+                //Generate random Meters between the maximum and minimum Meters
+                Random r = new Random();
+                int randomMeters = r.nextInt(max + min);
 
-            //then Generating Random numbers for different Methods
-            int randomPM = r.nextInt(6);
+                //then Generating Random numbers for different Methods
+                int randomPM = r.nextInt(6);
 
-            //Then we convert the distance in meters to coordinates by Multiplying number of meters with 1 Meter Coordinate
-            double metersCordN = meterCord * (double) randomMeters;
+                //Then we convert the distance in meters to coordinates by Multiplying number of meters with 1 Meter Coordinate
+                double metersCordN = meterCord * (double) randomMeters;
 
-            //here we generate the last Coordinates
-            if (randomPM == 0) {
-                return new LatLng(currentLat + metersCordN, currentLong + metersCordN);
-            } else if (randomPM == 1) {
-                return new LatLng(currentLat - metersCordN, currentLong - metersCordN);
-            } else if (randomPM == 2) {
-                return new LatLng(currentLat + metersCordN, currentLong - metersCordN);
-            } else if (randomPM == 3) {
-                return new LatLng(currentLat - metersCordN, currentLong + metersCordN);
-            } else if (randomPM == 4) {
-                return new LatLng(currentLat, currentLong - metersCordN);
-            } else {
-                return new LatLng(currentLat - metersCordN, currentLong);
-            }
+                //here we generate the last Coordinates
+                if (randomPM == 0) {
+                    return new LatLng(currentLat + metersCordN, currentLong + metersCordN);
+                } else if (randomPM == 1) {
+                    return new LatLng(currentLat - metersCordN, currentLong - metersCordN);
+                } else if (randomPM == 2) {
+                    return new LatLng(currentLat + metersCordN, currentLong - metersCordN);
+                } else if (randomPM == 3) {
+                    return new LatLng(currentLat - metersCordN, currentLong + metersCordN);
+                } else if (randomPM == 4) {
+                    return new LatLng(currentLat, currentLong - metersCordN);
+                } else {
+                    return new LatLng(currentLat - metersCordN, currentLong);
+                }
+
+
 
         } else {
             ActivityCompat.requestPermissions(this, new String[]{
@@ -309,8 +308,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         int markersToGenerate = 5;
         for (int position = 1; position <= markersToGenerate; position++) {
             LatLng coordinates = generateRandomCoordinates(minimumDistanceFromMe, maximumDistanceFromMe);
-
-            int random_coordinates = Log.i("random_coordinates", "" + coordinates);
 
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -361,4 +358,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+
+    }
 }
