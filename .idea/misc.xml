@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/androidmap/app/src/main/res/layout-land/activity_login.xml" value="0.2580364900086881" />
+        <entry key="..\:/AndroidStudioProjects/androidmap/app/src/main/res/layout-land/activity_maps.xml" value="0.2580364900086881" />
+        <entry key="..\:/AndroidStudioProjects/androidmap/app/src/main/res/layout-land/activity_register.xml" value="0.2580364900086881" />
+        <entry key="..\:/AndroidStudioProjects/androidmap/app/src/main/res/layout/activity_login.xml" value="0.309375" />
+        <entry key="..\:/AndroidStudioProjects/androidmap/app/src/main/res/layout/activity_maps.xml" value="0.33" />
+        <entry key="..\:/AndroidStudioProjects/androidmap/app/src/main/res/layout/activity_register.xml" value="0.309375" />
         <entry key="..\:/Users/Berkesun/AndroidStudioProjects/kk/app/src/main/res/drawable-small/firebase_image.xml" value="0.1" />
         <entry key="..\:/Users/Berkesun/AndroidStudioProjects/kk/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1945" />
         <entry key="..\:/Users/Berkesun/AndroidStudioProjects/kk/app/src/main/res/drawable-xhdpi/coffee-48px.xml" value="0.1" />

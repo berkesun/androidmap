@@ -7,14 +7,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.AuthResult;
+
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -37,17 +36,13 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        btnLogin.setOnClickListener(view -> {
-            loginUser();
-        });
-        tvRegisterHere.setOnClickListener(view ->{
-            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-        });
+        btnLogin.setOnClickListener(view -> loginUser());
+        tvRegisterHere.setOnClickListener(view -> startActivity(new Intent(LoginActivity.this, RegisterActivity.class)));
     }
 
     private void loginUser(){
-        String email = etLoginEmail.getText().toString();
-        String password = etLoginPassword.getText().toString();
+        String email = Objects.requireNonNull(etLoginEmail.getText()).toString();
+        String password = Objects.requireNonNull(etLoginPassword.getText()).toString();
 
         if (TextUtils.isEmpty(email)){
             etLoginEmail.setError("Email cannot be empty");
@@ -56,15 +51,12 @@ public class LoginActivity extends AppCompatActivity {
             etLoginPassword.setError("Password cannot be empty");
             etLoginPassword.requestFocus();
         }else{
-            mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()){
-                        Toast.makeText(LoginActivity.this, "User logged in successfully", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginActivity.this, MapsActivity.class));
-                    }else{
-                        Toast.makeText(LoginActivity.this, "Log in Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+            mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
+                if (task.isSuccessful()){
+                    Toast.makeText(LoginActivity.this, "User logged in successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(LoginActivity.this, MapsActivity.class));
+                }else{
+                    Toast.makeText(LoginActivity.this, "Log in Error: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
