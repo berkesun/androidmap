@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">SearchMap</string>
+    <string name="title_activity_maps">MapsActivity</string>
     <string name="logout">Logout</string>
     <string name="count">Count</string>
     <string name="email">Email</string>
