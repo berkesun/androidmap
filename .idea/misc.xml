@@ -3,6 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProjects/androidmap/app/src/main/res/drawable/ic_coffee_f_ll0_wght400_grad0_opsz48.xml" value="0.3515" />
+        <entry key="..\:/AndroidProjects/androidmap/app/src/main/res/layout-land/activity_login.xml" value="0.3148148148148148" />
+        <entry key="..\:/AndroidProjects/androidmap/app/src/main/res/layout-land/activity_maps.xml" value="0.3148148148148148" />
+        <entry key="..\:/AndroidProjects/androidmap/app/src/main/res/layout-land/activity_register.xml" value="0.3148148148148148" />
+        <entry key="..\:/AndroidProjects/androidmap/app/src/main/res/layout/activity_login.xml" value="0.19166666666666668" />
+        <entry key="..\:/AndroidProjects/androidmap/app/src/main/res/layout/activity_maps.xml" value="0.371875" />
+        <entry key="..\:/AndroidProjects/androidmap/app/src/main/res/layout/activity_register.xml" value="0.371875" />
         <entry key="..\:/AndroidStudioProjects/androidmap/app/src/main/res/layout-land/activity_login.xml" value="0.2580364900086881" />
         <entry key="..\:/AndroidStudioProjects/androidmap/app/src/main/res/layout-land/activity_maps.xml" value="0.2580364900086881" />
         <entry key="..\:/AndroidStudioProjects/androidmap/app/src/main/res/layout-land/activity_register.xml" value="0.2580364900086881" />

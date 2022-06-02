@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.kk">
+    package="com.mapstoken.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
@@ -30,7 +30,7 @@
             android:value="AIzaSyC-5PfjqlmEC16nmqpGi7s5i-kavIvTIgY" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name="com.mapstoken.app.MapsActivity"
             android:configChanges="orientation"
             android:screenOrientation="fullSensor"
             android:exported="true"
@@ -41,8 +41,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"/>
-        <activity android:name=".RegisterActivity"/>
+        <activity android:name="com.mapstoken.app.LoginActivity"/>
+        <activity android:name="com.mapstoken.app.RegisterActivity"/>
 
     </application>
 

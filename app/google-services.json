@@ -1,15 +1,45 @@
 {
   "project_info": {
     "project_number": "166229355051",
+    "firebase_url": "https://kk3131-48548-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "kk3131-48548",
     "storage_bucket": "kk3131-48548.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:166229355051:android:3b2ccf686d1699ff39586e",
+        "mobilesdk_app_id": "1:166229355051:android:ad750b08c74de86639586e",
         "android_client_info": {
           "package_name": "com.example.kk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "166229355051-19b1fu6rihel3kq0thb5p1eoisf9ocah.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1C_RKzMYibumunLfOu3B8ndVYqaegSds"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "166229355051-19b1fu6rihel3kq0thb5p1eoisf9ocah.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:166229355051:android:5c86e1174fd1396639586e",
+        "android_client_info": {
+          "package_name": "com.mapstoken.app"
         }
       },
       "oauth_client": [
