@@ -1,4 +1,4 @@
-package com.example.kk;
+package com.mapstoken.app;
 
 import org.junit.Test;
 
