@@ -12,6 +12,7 @@ android {
             storePassword '#2t-eNjZn3$SrMG+'
             keyAlias 'app'
             keyPassword '#2t-eNjZn3$SrMG+'
+            storeFile file('keystore.jks')
         }
     }
     compileSdk 32
