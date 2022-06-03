@@ -55,6 +55,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static Circle mCircle;
     private static Marker marker;
     private final DatabaseReference db = FirebaseDatabase.getInstance("https://kk3131-48548-default-rtdb.europe-west1.firebasedatabase.app").getReference();
+    public String bestProvider;
+    public Criteria criteria;
     Button btnLogOut;
     TextView countdown;
     private FirebaseAuth mAuth;
@@ -142,7 +144,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     PackageManager.PERMISSION_GRANTED &&
                     ContextCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) ==
                             PackageManager.PERMISSION_GRANTED) {
-                Criteria criteria = new Criteria();
+                criteria = new Criteria();
                 String bestProvider = String.valueOf(lm.getBestProvider(criteria, false));
                 location = lm.getLastKnownLocation(bestProvider);
                 if (location != null) {
@@ -264,11 +266,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 PackageManager.PERMISSION_GRANTED &&
                 ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) ==
                         PackageManager.PERMISSION_GRANTED) {
-
+            criteria = new Criteria();
             LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            double currentLong = location.getLongitude();
-            double currentLat = location.getLatitude();
+            bestProvider = String.valueOf(lm.getBestProvider(criteria, true));
+            if (location != null) {
+                User.getInstance().setLon(location.getLongitude());
+                User.getInstance().setLat(location.getLatitude());
+            } else {
+                lm.requestLocationUpdates(bestProvider, 1000, 0, this);
+            }
+
 
             // 1 KiloMeter = 0.00900900900901° So, 1 Meter = 0.00900900900901 / 1000
             double meterCord = 0.00900900900901 / 1000;
@@ -285,17 +293,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             //here we generate the last Coordinates
             if (randomPM == 0) {
-                return new LatLng(currentLat + metersCordN, currentLong + metersCordN);
+                return new LatLng(User.getInstance().getLat() + metersCordN, User.getInstance().getLon() + metersCordN);
             } else if (randomPM == 1) {
-                return new LatLng(currentLat - metersCordN, currentLong - metersCordN);
+                return new LatLng(User.getInstance().getLat() - metersCordN, User.getInstance().getLon() - metersCordN);
             } else if (randomPM == 2) {
-                return new LatLng(currentLat + metersCordN, currentLong - metersCordN);
+                return new LatLng(User.getInstance().getLat() + metersCordN, User.getInstance().getLon() - metersCordN);
             } else if (randomPM == 3) {
-                return new LatLng(currentLat - metersCordN, currentLong + metersCordN);
+                return new LatLng(User.getInstance().getLat() - metersCordN, User.getInstance().getLon() + metersCordN);
             } else if (randomPM == 4) {
-                return new LatLng(currentLat, currentLong - metersCordN);
+                return new LatLng(User.getInstance().getLat(), User.getInstance().getLon() - metersCordN);
             } else {
-                return new LatLng(currentLat - metersCordN, currentLong);
+                return new LatLng(User.getInstance().getLat() - metersCordN, User.getInstance().getLon());
             }
 
         } else {
