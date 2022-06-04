@@ -1,34 +1,42 @@
 {
   "project_info": {
-    "project_number": "166229355051",
-    "firebase_url": "https://kk3131-48548-default-rtdb.europe-west1.firebasedatabase.app",
-    "project_id": "kk3131-48548",
-    "storage_bucket": "kk3131-48548.appspot.com"
+    "project_number": "988880251862",
+    "firebase_url": "https://mapstoken-68224-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "mapstoken-68224",
+    "storage_bucket": "mapstoken-68224.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:166229355051:android:5c86e1174fd1396639586e",
+        "mobilesdk_app_id": "1:988880251862:android:081517001efc0942c19277",
         "android_client_info": {
           "package_name": "com.mapstoken.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "166229355051-19b1fu6rihel3kq0thb5p1eoisf9ocah.apps.googleusercontent.com",
+          "client_id": "988880251862-dalerq1mk0tc1j9m694ol7prj35sj2mr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mapstoken.app",
+            "certificate_hash": "201ab17aa9147ff2bf75bc43b16e8f04e13cdb74"
+          }
+        },
+        {
+          "client_id": "988880251862-8paeo7ragvremjs2vmq8glaj2ku60f96.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB1C_RKzMYibumunLfOu3B8ndVYqaegSds"
+          "current_key": "AIzaSyCRdDD-CiRIwTL8GE1EWrjf5XmO9h-spS0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "166229355051-19b1fu6rihel3kq0thb5p1eoisf9ocah.apps.googleusercontent.com",
+              "client_id": "988880251862-8paeo7ragvremjs2vmq8glaj2ku60f96.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

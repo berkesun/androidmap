@@ -54,7 +54,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static final List<Marker> mMarker = new ArrayList<>();
     private static Circle mCircle;
     private static Marker marker;
-    private final DatabaseReference db = FirebaseDatabase.getInstance("https://kk3131-48548-default-rtdb.europe-west1.firebasedatabase.app").getReference();
+    private final DatabaseReference db = FirebaseDatabase.getInstance("https://mapstoken-68224-default-rtdb.europe-west1.firebasedatabase.app").getReference();
     public String bestProvider;
     public Criteria criteria;
     Button btnLogOut;
@@ -68,21 +68,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_maps);
         btnLogOut = findViewById(R.id.btnLogout);
         mAuth = FirebaseAuth.getInstance();
-        countdown = (TextView) findViewById(R.id.txtMessage);
-
-//        ----- Sadece Crashlytics Test Kullanımı Başlangıcı ---------------------------
-//        Button crashButton = new Button(this);
-//        crashButton.setText("Test Crash");
-//        crashButton.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View view) {
-//                throw new RuntimeException("Test Crash"); // Force a crash
-//            }
-//        });
-//
-//        addContentView(crashButton, new ViewGroup.LayoutParams(
-//                ViewGroup.LayoutParams.MATCH_PARENT,
-//                ViewGroup.LayoutParams.WRAP_CONTENT));
-//        ----- Sadece Crashlytics Test Kullanımı Sonu ---------------------------------
+        countdown = findViewById(R.id.txtMessage);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -145,7 +131,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     ContextCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) ==
                             PackageManager.PERMISSION_GRANTED) {
                 criteria = new Criteria();
-                String bestProvider = String.valueOf(lm.getBestProvider(criteria, false));
+                bestProvider = String.valueOf(lm.getBestProvider(criteria, false));
                 location = lm.getLastKnownLocation(bestProvider);
                 if (location != null) {
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
@@ -177,7 +163,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             marker.setTitle("xd");
                             mMap.setOnMarkerClickListener(marker -> {
                                 if (Objects.equals(marker.getTitle(), "xd")) {
-                                    marker.remove();
+                                    // marker.remove();
                                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                     if (user != null) {
                                         db.child(user.getUid()).addValueEventListener(new ValueEventListener() {
@@ -196,6 +182,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         if (User.getInstance().getLat() == latm && User.getInstance().getLon() == lagm) {
                                                             s.child("collect").getRef().setValue(1.0);
                                                         }
+                                                        marker.remove();
                                                     }
                                                 }
                                             }
