@@ -14,6 +14,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -146,9 +147,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             .build();
                     mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
-//                    Log.e("TAG", "GPS is on");
-//                    double latitude = location.getLatitude();
-//                    double longitude = location.getLongitude();
+
+                    double latitude = location.getLatitude();
+                    double longitude = location.getLongitude();
+                    Log.e("Latitude", String.valueOf(latitude));
+                    Log.e("Longitude", String.valueOf(longitude));
                     drawCircle(location);
                     float[] distance = new float[2];
                     for (int m = 0; m < mMarker.size(); m++) {
@@ -171,10 +174,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                 for (DataSnapshot s : dataSnapshot.getChildren()) {
                                                     Double collect = s.child("collect").getValue(Double.class);
-                                                    User.getInstance().setLat(s.child("latitude").getValue(Double.class));
-                                                    User.getInstance().setLon(s.child("longitude").getValue(Double.class));
-                                                    //                                                double lat1 = s.child("latitude").getValue(Double.class);
-                                                    //                                                double lag = s.child("longitude").getValue(Double.class);
+                                                    Double lat1 = s.child("latitude").getValue(Double.class);
+                                                    Double lag1 = s.child("longitude").getValue(Double.class);
+                                                    if (lat1 != null && lag1 != null) {
+                                                        User.getInstance().setLat(lat1);
+                                                        User.getInstance().setLon(lag1);
+                                                    }
                                                     LatLng position1 = marker.getPosition();
                                                     double latm = position1.latitude;
                                                     double lagm = position1.longitude;
@@ -215,10 +220,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     for (DataSnapshot s : dataSnapshot.getChildren()) {
                         Double collect = s.child("collect").getValue(Double.class);
                         if (collect != null && collect.equals(0.0)) {
-                            User.getInstance().setLat(s.child("latitude").getValue(Double.class));
-                            User.getInstance().setLon(s.child("longitude").getValue(Double.class));
-                            //                            double lat = s.child("latitude").getValue(Double.class);
-                            //                            double lag = s.child("longitude").getValue(Double.class);
+                            Double lat = s.child("latitude").getValue(Double.class);
+                            Double lag = s.child("longitude").getValue(Double.class);
+                            if (lat != null && lag != null) {
+                                User.getInstance().setLat(lat);
+                                User.getInstance().setLon(lag);
+                            }
                             marker = mMap.addMarker(new MarkerOptions().position(new LatLng(User.getInstance().getLat(), User.getInstance().getLon())).title("mid point").snippet("Snippet").icon(bitmapDescriptorFromVector(MapsActivity.this, R.drawable.ic_starbucks__1_)));
                             mMarker.add(marker);
                         }
