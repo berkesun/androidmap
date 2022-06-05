@@ -51,7 +51,7 @@ import java.util.Random;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener {
     private static final int TAG_CODE_PERMISSION_LOCATION = 12;
-    private static final HashMap<String, Number> korrddinat = new HashMap<>();
+    private static final HashMap<Object, Object> korrddinat = new HashMap<>();
     private static final List<Marker> mMarker = new ArrayList<>();
     private static Circle mCircle;
     private static Marker marker;
@@ -83,7 +83,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             startActivity(new Intent(MapsActivity.this, LoginActivity.class));
         });
         try {
-            new Handler().postDelayed(this::generateRandomMarkers, 5000);
+            new Handler().postDelayed(this::generateRandomMarkers, 500);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -164,9 +164,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 mCircle.getCenter().longitude, distance);
                         if (distance[0] <= mCircle.getRadius()) {
                             marker.setTitle("xd");
+
                             mMap.setOnMarkerClickListener(marker -> {
                                 if (Objects.equals(marker.getTitle(), "xd")) {
-                                    // marker.remove();
+                                    for (Marker otherMarker : mMarker) {
+                                        otherMarker.remove();
+                                    }
+
                                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                     if (user != null) {
                                         db.child(user.getUid()).addValueEventListener(new ValueEventListener() {
@@ -187,7 +191,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         if (User.getInstance().getLat() == latm && User.getInstance().getLon() == lagm) {
                                                             s.child("collect").getRef().setValue(1.0);
                                                         }
-                                                        marker.remove();
                                                     }
                                                 }
                                             }
@@ -204,6 +207,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         }
                     }
                 }
+
             } else {
                 ActivityCompat.requestPermissions(MapsActivity.this, new String[]{
                                 Manifest.permission.ACCESS_FINE_LOCATION,
@@ -228,6 +232,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             }
                             marker = mMap.addMarker(new MarkerOptions().position(new LatLng(User.getInstance().getLat(), User.getInstance().getLon())).title("mid point").snippet("Snippet").icon(bitmapDescriptorFromVector(MapsActivity.this, R.drawable.ic_starbucks__1_)));
                             mMarker.add(marker);
+                            marker.setVisible(true);
                         }
                     }
                 }
@@ -270,7 +275,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             } else {
                 lm.requestLocationUpdates(bestProvider, 1000, 0, this);
             }
-
 
             // 1 KiloMeter = 0.00900900900901° So, 1 Meter = 0.00900900900901 / 1000
             double meterCord = 0.00900900900901 / 1000;
@@ -353,9 +357,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng currentPosition = new LatLng(location.getLatitude(), location.getLongitude());
         CircleOptions circleOptions = new CircleOptions()
                 .center(currentPosition)
-                .radius(750)
+                .radius(75000)
                 .strokeWidth(2)
-                .strokeColor(Color.BLUE)
+                .strokeColor(Color.RED)
                 .fillColor(Color.parseColor("#500084d3"));
         mCircle = mMap.addCircle(circleOptions);
     }

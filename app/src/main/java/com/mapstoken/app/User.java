@@ -1,11 +1,14 @@
 package com.mapstoken.app;
 
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+
 import java.util.Objects;
 
 public class User {
     private volatile static User instance;
-    private double lat;
-    private double lon;
+    private Double lat;
+    private Double lon;
 
     private User() {
     }
@@ -27,19 +30,19 @@ public class User {
         return instance;
     }
 
-    public double getLat() {
+    public Double getLat() {
         return lat;
     }
 
-    public void setLat(double lat) {
+    public void setLat(Double lat) {
         this.lat = lat;
     }
 
-    public double getLon() {
+    public Double getLon() {
         return lon;
     }
 
-    public void setLon(double lon) {
+    public void setLon(Double lon) {
         this.lon = lon;
     }
 
