@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.mapstoken.app">
+    package="com.searchmap.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
+        android:configChanges="orientation|screenSize|keyboardHidden"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:configChanges="orientation|screenSize|keyboardHidden"
         android:theme="@style/Theme.Kk">
 
         <!--
@@ -32,11 +33,11 @@
             android:value="AIzaSyC-5PfjqlmEC16nmqpGi7s5i-kavIvTIgY" />
 
         <activity
-            android:name="com.mapstoken.app.MapsActivity"
+            android:name=".MapsActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
             android:exported="true"
             android:label="@string/title_activity_maps"
+            android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,8 +45,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.mapstoken.app.LoginActivity"/>
-        <activity android:name="com.mapstoken.app.RegisterActivity"/>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegisterActivity" />
 
     </application>
 

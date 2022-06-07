@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "988880251862",
-    "firebase_url": "https://mapstoken-68224-default-rtdb.europe-west1.firebasedatabase.app",
-    "project_id": "mapstoken-68224",
-    "storage_bucket": "mapstoken-68224.appspot.com"
+    "project_number": "449182710486",
+    "firebase_url": "https://searchmap-7d89f-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "searchmap-7d89f",
+    "storage_bucket": "searchmap-7d89f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:988880251862:android:081517001efc0942c19277",
+        "mobilesdk_app_id": "1:449182710486:android:e5e8796e8b3b2b0f132777",
         "android_client_info": {
-          "package_name": "com.mapstoken.app"
+          "package_name": "com.searchmap.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "988880251862-dalerq1mk0tc1j9m694ol7prj35sj2mr.apps.googleusercontent.com",
+          "client_id": "449182710486-d4mgiuo5l0tgb1rnaqpnc2brqanlvemo.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.mapstoken.app",
+            "package_name": "com.searchmap.app",
             "certificate_hash": "201ab17aa9147ff2bf75bc43b16e8f04e13cdb74"
           }
         },
         {
-          "client_id": "988880251862-8paeo7ragvremjs2vmq8glaj2ku60f96.apps.googleusercontent.com",
+          "client_id": "449182710486-08j48s37at9kg3vj21uvovjhm3gkbbul.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCRdDD-CiRIwTL8GE1EWrjf5XmO9h-spS0"
+          "current_key": "AIzaSyBM3LXIUQzZkJ6QZ58PvQNxtQTfhnuyL-w"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "988880251862-8paeo7ragvremjs2vmq8glaj2ku60f96.apps.googleusercontent.com",
+              "client_id": "449182710486-08j48s37at9kg3vj21uvovjhm3gkbbul.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
