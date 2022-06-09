@@ -42,6 +42,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.searchmap.app.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -290,7 +291,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             double metersCordN = meterCord * (double) randomMeters;
 
             if (User.getInstance().getLat() != null && User.getInstance().getLon() != null) {
-
                 //here we generate the last Coordinates
                 if (randomPM == 0) {
                     return new LatLng(User.getInstance().getLat() + metersCordN, User.getInstance().getLon() + metersCordN);

@@ -22,15 +22,20 @@ android {
         applicationId "com.searchmap.app"
         minSdk 28
         targetSdk 32
-        versionCode 1
+        versionCode 3
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndkVersion "23.1.7779620"
+        ndk{
+            debugSymbolLevel 'FULL'
+        }
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            shrinkResources true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
