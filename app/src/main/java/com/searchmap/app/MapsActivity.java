@@ -85,7 +85,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
 
-
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -262,7 +261,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
 
-
         if (user != null) {
             db.child("firma").child("ceviz").child("users").child(user.getUid()).orderByChild("collect").equalTo(1).addValueEventListener(new ValueEventListener() {
                 @Override
@@ -272,8 +270,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     db.child("firma").child("ceviz").child("users").child(user.getUid()).child("toplam").setValue(size);
 
 
-                    }
-
+                }
 
 
                 @Override
@@ -344,7 +341,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return null;
     }
 
-    void Satinal(int fiyat){
+    void Satinal(int fiyat) {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -352,17 +349,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     long size = (int) snapshot.getChildrenCount();
-                    for (DataSnapshot s: snapshot.getChildren()){
-                        if(size>=fiyat) {
+                    for (DataSnapshot s : snapshot.getChildren()) {
+                        if (size >= fiyat && size==0) {
                             s.getRef().setValue(null);
-                        }
-                        else{
+                        } else {
                             Toast toast = Toast.makeText(MapsActivity.this, "Bakiye yetersiz, toplamaya devam.", Toast.LENGTH_LONG);
-                            toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
                             toast.show();
                         }
 
-                    }}
+                    }
+                }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
