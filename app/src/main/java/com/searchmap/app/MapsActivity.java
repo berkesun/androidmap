@@ -16,7 +16,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -77,12 +76,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         countdown = findViewById(R.id.txtMessage);
         satinAl = findViewById(R.id.SatinAl);
 
-        satinAl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Satinal(2);
-            }
-        });
+        satinAl.setOnClickListener(view -> Satinal(2));
 
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -268,10 +262,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     long size = (int) snapshot.getChildrenCount();
                     countdown.setText(String.valueOf(size));
                     db.child("firma").child("ceviz").child("users").child(user.getUid()).child("toplam").setValue(size);
-
-
                 }
-
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
@@ -279,8 +270,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             });
         }
-
-
     }
 
     public LatLng generateRandomCoordinates(int min, int max) {
@@ -315,7 +304,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             double metersCordN = meterCord * (double) randomMeters;
 
             if (User.getInstance().getLat() != null && User.getInstance().getLon() != null) {
-
                 //here we generate the last Coordinates
                 if (randomPM == 0) {
                     return new LatLng(User.getInstance().getLat() + metersCordN, User.getInstance().getLon() + metersCordN);
@@ -337,7 +325,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             Manifest.permission.ACCESS_COARSE_LOCATION},
                     TAG_CODE_PERMISSION_LOCATION);
         }
-
         return null;
     }
 
@@ -350,25 +337,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     long size = (int) snapshot.getChildrenCount();
                     for (DataSnapshot s : snapshot.getChildren()) {
-                        if (size >= fiyat && size!=0) {
+                        if (size >= fiyat && size != 0) {
                             s.getRef().setValue(null);
                         } else {
                             Toast toast = Toast.makeText(MapsActivity.this, "Bakiye yetersiz, toplamaya devam.", Toast.LENGTH_LONG);
                             toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
                             toast.show();
                         }
-
                     }
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
-
                 }
             });
         }
-
     }
 
     void generateRandomMarkers() {
