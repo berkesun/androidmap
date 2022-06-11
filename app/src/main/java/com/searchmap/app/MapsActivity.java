@@ -15,8 +15,11 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -42,6 +45,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.searchmap.app.model.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,6 +63,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public String bestProvider;
     public Criteria criteria;
     Button btnLogOut;
+    Button satinAl;
     TextView countdown;
     private FirebaseAuth mAuth;
     private GoogleMap mMap;
@@ -70,6 +75,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         btnLogOut = findViewById(R.id.btnLogout);
         mAuth = FirebaseAuth.getInstance();
         countdown = findViewById(R.id.txtMessage);
+        satinAl = findViewById(R.id.SatinAl);
+
+        satinAl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Satinal(2);
+            }
+        });
+
+
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -83,7 +98,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             startActivity(new Intent(MapsActivity.this, LoginActivity.class));
         });
         try {
-            new Handler().postDelayed(this::generateRandomMarkers, 500);
+            new Handler().postDelayed(this::generateRandomMarkers, 5000);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -147,12 +162,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             .build();
                     mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
+                    drawCircle(location);
 
                     double latitude = location.getLatitude();
                     double longitude = location.getLongitude();
                     Log.e("Latitude", String.valueOf(latitude));
                     Log.e("Longitude", String.valueOf(longitude));
-                    drawCircle(location);
+
                     float[] distance = new float[2];
                     for (int m = 0; m < mMarker.size(); m++) {
                         marker = mMarker.get(m);
@@ -173,7 +189,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                     if (user != null) {
-                                        db.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+                                        db.child("firma").child("ceviz").child("users").child(user.getUid()).addValueEventListener(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                 for (DataSnapshot s : dataSnapshot.getChildren()) {
@@ -192,6 +208,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                             s.child("collect").getRef().setValue(1.0);
                                                         }
                                                     }
+
                                                 }
                                             }
 
@@ -218,7 +235,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            db.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+            db.child("firma").child("ceviz").child("users").child(user.getUid()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot s : dataSnapshot.getChildren()) {
@@ -243,13 +260,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             });
         }
+
+
+
         if (user != null) {
-            db.child(user.getUid()).orderByChild("collect").equalTo(1).addValueEventListener(new ValueEventListener() {
+            db.child("firma").child("ceviz").child("users").child(user.getUid()).orderByChild("collect").equalTo(1).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     long size = (int) snapshot.getChildrenCount();
                     countdown.setText(String.valueOf(size));
-                }
+                    db.child("firma").child("ceviz").child("users").child(user.getUid()).child("toplam").setValue(size);
+
+
+                    }
+
+
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
@@ -257,6 +282,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             });
         }
+
+
     }
 
     public LatLng generateRandomCoordinates(int min, int max) {
@@ -267,8 +294,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         PackageManager.PERMISSION_GRANTED) {
             criteria = new Criteria();
             LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             bestProvider = String.valueOf(lm.getBestProvider(criteria, true));
+            Location location = lm.getLastKnownLocation(bestProvider);
+
             if (location != null) {
                 User.getInstance().setLon(location.getLongitude());
                 User.getInstance().setLat(location.getLatitude());
@@ -316,6 +344,36 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return null;
     }
 
+    void Satinal(int fiyat){
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            db.child("firma").child("ceviz").child("users").child(user.getUid()).orderByChild("collect").equalTo(1).limitToFirst(fiyat).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    long size = (int) snapshot.getChildrenCount();
+                    for (DataSnapshot s: snapshot.getChildren()){
+                        if(size>=fiyat) {
+                            s.getRef().setValue(null);
+                        }
+                        else{
+                            Toast toast = Toast.makeText(MapsActivity.this, "Bakiye yetersiz, toplamaya devam.", Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                            toast.show();
+                        }
+
+                    }}
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+
+                }
+            });
+        }
+
+    }
+
     void generateRandomMarkers() {
         //set your own minimum distance here
         int minimumDistanceFromMe = 10;
@@ -333,7 +391,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             korrddinat.put("collect", 0.0);
             if (user != null) {
                 String userid = user.getUid();
-                db.child(userid).push().setValue(korrddinat);
+                db.child("firma").child("ceviz").child("users").child(userid).push().setValue(korrddinat);
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.searchmap.app;
+package com.searchmap.app.model;
 
 import java.util.Objects;
 

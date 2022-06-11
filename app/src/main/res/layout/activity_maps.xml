@@ -29,6 +29,16 @@
             map:layout_constraintHorizontal_bias="0.5"
             map:layout_constraintStart_toStartOf="parent"
             tools:ignore="TextContrastCheck" />
+        <Button
+            android:id="@+id/SatinAl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="SatinAl"
+            map:layout_constraintEnd_toEndOf="parent"
+            map:layout_constraintHorizontal_bias="0.5"
+            map:layout_constraintStart_toStartOf="parent"
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/txtMessage"
