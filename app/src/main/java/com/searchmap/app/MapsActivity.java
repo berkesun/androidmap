@@ -44,6 +44,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.searchmap.app.model.Firma;
 import com.searchmap.app.model.User;
 
 import java.util.ArrayList;
@@ -76,7 +77,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         countdown = findViewById(R.id.txtMessage);
         satinAl = findViewById(R.id.SatinAl);
 
-        satinAl.setOnClickListener(view -> Satinal(2));
+        Firma.getInstance().setSatinAlMiktari(2);
+
+        satinAl.setOnClickListener(view -> Satinal(Firma.getInstance().getSatinAlMiktari()));
 
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
