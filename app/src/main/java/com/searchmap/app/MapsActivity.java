@@ -350,7 +350,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     long size = (int) snapshot.getChildrenCount();
                     for (DataSnapshot s : snapshot.getChildren()) {
-                        if (size >= fiyat && size==0) {
+                        if (size >= fiyat && size!=0) {
                             s.getRef().setValue(null);
                         } else {
                             Toast toast = Toast.makeText(MapsActivity.this, "Bakiye yetersiz, toplamaya devam.", Toast.LENGTH_LONG);
