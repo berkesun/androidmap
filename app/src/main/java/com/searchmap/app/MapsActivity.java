@@ -52,8 +52,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener {
     private static final int TAG_CODE_PERMISSION_LOCATION = 12;
@@ -103,12 +101,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         //new Timer().scheduleAtFixedRate(new TimerTask() {
-          //  @Override
-            //public void run() {
-              //  if(mMarker == null ||mMarker.isEmpty()){
-                //    generateRandomMarkers();
-                //}
-            //}
+        //  @Override
+        //public void run() {
+        //  if(mMarker == null ||mMarker.isEmpty()){
+        //    generateRandomMarkers();
+        //}
+        //}
         //}, 0, 5000);//put here time 1000 milliseconds=1 second
 
     }
@@ -418,8 +416,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     protected void onResume() {
-
-
         super.onResume();
     }
 
@@ -441,6 +437,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onLocationChanged(@NonNull Location location) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
     }
 
     @Override
