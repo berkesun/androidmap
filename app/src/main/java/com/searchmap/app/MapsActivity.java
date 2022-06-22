@@ -52,6 +52,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener {
     private static final int TAG_CODE_PERMISSION_LOCATION = 12;
@@ -95,9 +97,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
         try {
             new Handler().postDelayed(this::generateRandomMarkers, 5000);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        //new Timer().scheduleAtFixedRate(new TimerTask() {
+          //  @Override
+            //public void run() {
+              //  if(mMarker == null ||mMarker.isEmpty()){
+                //    generateRandomMarkers();
+                //}
+            //}
+        //}, 0, 5000);//put here time 1000 milliseconds=1 second
+
     }
 
     /**
@@ -137,7 +150,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, location -> {
+        lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, location -> {
             if (ContextCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) ==
                     PackageManager.PERMISSION_GRANTED &&
                     ContextCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) ==
@@ -387,7 +400,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng currentPosition = new LatLng(location.getLatitude(), location.getLongitude());
         CircleOptions circleOptions = new CircleOptions()
                 .center(currentPosition)
-                .radius(75000)
+                .radius(1500)
                 .strokeWidth(2)
                 .strokeColor(Color.RED)
                 .fillColor(Color.parseColor("#500084d3"));
@@ -405,6 +418,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     protected void onResume() {
+
+
         super.onResume();
     }
 
