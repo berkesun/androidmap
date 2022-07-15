@@ -13,4 +13,6 @@
     <string name="register">Register</string>
     <string name="already_registered">Already registered</string>
     <string name="login_here">Login here</string>
+    <string name="logo">Logo</string>
+    <string name="back_arrow">Back Arrow</string>
 </resources>

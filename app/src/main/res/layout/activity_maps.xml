@@ -12,7 +12,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="665dp"
-        tools:context="com.searchmap.app.MapsActivity" />
+        tools:context=".MapsActivity" />
 
     <GridLayout
         android:layout_width="match_parent"

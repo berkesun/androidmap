@@ -4,8 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp"
-    tools:context="com.searchmap.app.LoginActivity">
+    android:paddingRight="50dp"
+    android:paddingLeft="50dp"
+    tools:context=".LoginActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -13,8 +14,8 @@
         android:layout_height="200dp"
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
-        android:contentDescription="@string/todo"
-        android:src="@drawable/starbuckswp" />
+        android:src="@drawable/ic_starbucks"
+        android:contentDescription="@string/logo" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -69,7 +70,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:background="@color/green"
             android:text="@string/login"
+            android:textSize="20sp"
+            android:height="60dp"
+            android:textAllCaps="false"
             tools:ignore="DuplicateSpeakableTextCheck" />
 
         <LinearLayout
