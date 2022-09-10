@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingRight="50dp"
     android:paddingLeft="50dp"
-    tools:context=".RegisterActivity">
+    android:paddingRight="50dp"
+    tools:context="com.gobi.android.RegisterActivity">
 
     <ImageView
         android:id="@+id/back_arrow"
@@ -29,9 +29,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_gravity="center"
-        android:layout_marginTop="25dp">
+        android:layout_marginTop="25dp"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
@@ -45,8 +45,8 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -61,8 +61,8 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp">
 
@@ -81,11 +81,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:background="@color/green"
-            android:textSize="20sp"
-            android:textAllCaps="false"
-            android:text="@string/register"
             android:height="60dp"
+            android:background="@color/green"
+            android:text="@string/register"
+            android:textAllCaps="false"
+            android:textSize="20sp"
             tools:ignore="DuplicateSpeakableTextCheck" />
 
         <LinearLayout
@@ -99,7 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/already_registered"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvLoginHere"
@@ -108,8 +108,8 @@
                 android:layout_marginStart="8dp"
                 android:text="@string/login_here"
                 android:textColor="@color/teal_700"
-                android:textStyle="bold"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 

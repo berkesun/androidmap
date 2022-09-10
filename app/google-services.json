@@ -1,43 +1,50 @@
 {
   "project_info": {
-    "project_number": "449182710486",
-    "firebase_url": "https://searchmap-7d89f-default-rtdb.europe-west1.firebasedatabase.app",
-    "project_id": "searchmap-7d89f",
-    "storage_bucket": "searchmap-7d89f.appspot.com"
+    "project_number": "192284834645",
+    "firebase_url": "https://gobi-57dbf-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "gobi-57dbf",
+    "storage_bucket": "gobi-57dbf.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:449182710486:android:e5e8796e8b3b2b0f132777",
+        "mobilesdk_app_id": "1:192284834645:android:c9c4b60b52fb75d9428ddc",
         "android_client_info": {
-          "package_name": "com.searchmap.app"
+          "package_name": "com.gobi.android"
         }
       },
       "oauth_client": [
         {
-          "client_id": "449182710486-d4mgiuo5l0tgb1rnaqpnc2brqanlvemo.apps.googleusercontent.com",
+          "client_id": "192284834645-t776p5ncgg02cbgipgsaanmm96ul1tf2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.searchmap.app",
+            "package_name": "com.gobi.android",
             "certificate_hash": "201ab17aa9147ff2bf75bc43b16e8f04e13cdb74"
           }
         },
         {
-          "client_id": "449182710486-08j48s37at9kg3vj21uvovjhm3gkbbul.apps.googleusercontent.com",
+          "client_id": "192284834645-l9r1ncbkp33a0m8sjoci29grjhf28o9o.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBM3LXIUQzZkJ6QZ58PvQNxtQTfhnuyL-w"
+          "current_key": "AIzaSyC7rvH1wSALN4YbjILAW_sfOtcuiQJuQ3g"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "449182710486-08j48s37at9kg3vj21uvovjhm3gkbbul.apps.googleusercontent.com",
+              "client_id": "192284834645-l9r1ncbkp33a0m8sjoci29grjhf28o9o.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "192284834645-7jeskpqvg02iefqham9vrjevh4svvf51.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.gobi.ios"
+              }
             }
           ]
         }

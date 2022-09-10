@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.searchmap.app">
+    package="com.gobi.android">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -30,7 +30,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC-5PfjqlmEC16nmqpGi7s5i-kavIvTIgY" />
+            android:value="AIzaSyC7rvH1wSALN4YbjILAW_sfOtcuiQJuQ3g " />
 
         <activity
             android:name=".MapsActivity"

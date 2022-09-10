@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingRight="50dp"
     android:paddingLeft="50dp"
-    tools:context=".LoginActivity">
+    android:paddingRight="50dp"
+    tools:context="com.gobi.android.LoginActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -14,15 +14,15 @@
         android:layout_height="200dp"
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
-        android:src="@drawable/ic_starbucks"
-        android:contentDescription="@string/logo" />
+        android:contentDescription="@string/logo"
+        android:src="@drawable/ic_starbucks" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_gravity="center"
-        android:layout_marginTop="25dp">
+        android:layout_marginTop="25dp"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
@@ -36,8 +36,8 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -51,8 +51,8 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp">
 
@@ -70,11 +70,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:height="60dp"
             android:background="@color/green"
             android:text="@string/login"
-            android:textSize="20sp"
-            android:height="60dp"
             android:textAllCaps="false"
+            android:textSize="20sp"
             tools:ignore="DuplicateSpeakableTextCheck" />
 
         <LinearLayout
